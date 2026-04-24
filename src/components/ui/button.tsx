@@ -14,14 +14,17 @@ const buttonVariants = cva(
         outline:
           "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-accent/20 hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        hero: "bg-primary text-primary-foreground font-semibold shadow-[var(--shadow-glow)] hover:brightness-110 hover:shadow-[0_0_80px_-5px_color-mix(in_oklab,var(--primary)_60%,transparent)] transition-all duration-300",
+        glass: "glass text-foreground hover:border-primary/50 hover:text-primary transition-all",
       },
       size: {
-        default: "h-9 px-4 py-2",
+        default: "h-10 px-5 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-8",
-        icon: "h-9 w-9",
+        lg: "h-12 rounded-lg px-8 text-base",
+        xl: "h-14 rounded-lg px-10 text-base",
+        icon: "h-10 w-10",
       },
     },
     defaultVariants: {
