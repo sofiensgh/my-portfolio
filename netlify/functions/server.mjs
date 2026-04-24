@@ -1,4 +1,5 @@
-﻿const server = require('../../dist/server/index.js');
+@'
+const server = require('../../dist/server/index.js');
 
 exports.handler = async (event, context) => {
   try {
@@ -13,3 +14,4 @@ exports.handler = async (event, context) => {
     };
   }
 };
+'@ | Out-File -FilePath netlify/functions/server.js -Encoding utf8

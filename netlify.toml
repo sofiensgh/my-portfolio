@@ -4,6 +4,7 @@
 
 [functions]
   directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/*"
@@ -14,10 +15,3 @@
   from = "/assets/*"
   to = "/assets/:splat"
   status = 200
-
-# Handle asset requests correctly
-[[redirects]]
-  from = "/assets/*"
-  to = "/assets/:splat"
-  status = 200
-  force = true
