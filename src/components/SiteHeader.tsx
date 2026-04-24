@@ -15,7 +15,7 @@ export function SiteHeader() {
           <span className="grid h-7 w-7 place-items-center rounded-md bg-primary text-primary-foreground text-xs font-mono">
             ✦
           </span>
-          <span className="text-base">dev.folio</span>
+          <span className="text-base">sofien.dev</span>
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => (
