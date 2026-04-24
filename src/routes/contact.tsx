@@ -5,9 +5,9 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Alex Rivera" },
-      { name: "description", content: "Get in touch with Alex Rivera for engineering work, consulting, or collaboration." },
-      { property: "og:title", content: "Contact — Alex Rivera" },
+      { title: "Contact — Sofien Essghaier" },
+      { name: "description", content: "Get in touch with Sofien Essghaier for internships, freelance work, or collaboration." },
+      { property: "og:title", content: "Contact — Sofien Essghaier" },
       { property: "og:description", content: "Let's build something together." },
     ],
   }),
@@ -15,10 +15,10 @@ export const Route = createFileRoute("/contact")({
 });
 
 const channels = [
-  { label: "Email", value: "hello@alexrivera.dev", href: "mailto:hello@alexrivera.dev" },
-  { label: "GitHub", value: "@alexrivera", href: "https://github.com" },
-  { label: "LinkedIn", value: "in/alexrivera", href: "https://linkedin.com" },
-  { label: "Calendar", value: "Book a 30-min intro call", href: "https://cal.com" },
+  { label: "Email", value: "sofensghaier2@gmail.com", href: "mailto:sofensghaier2@gmail.com" },
+  { label: "Phone", value: "+216 29 659 711", href: "tel:+21629659711" },
+  { label: "GitHub", value: "@sofien-essghaier", href: "https://github.com" },
+  { label: "LinkedIn", value: "in/sofien-essghaier", href: "https://linkedin.com" },
 ];
 
 function ContactPage() {
@@ -31,8 +31,7 @@ function ContactPage() {
           Let&apos;s build <span className="text-gradient">something.</span>
         </h1>
         <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-          Whether it&apos;s a freelance gig, a consulting call, or just to say hi — my inbox is
-          open.
+          Whether it&apos;s an internship, a freelance project, or just to say hi — my inbox is open.
         </p>
 
         <div className="mt-16 grid gap-4 md:grid-cols-2">
@@ -56,10 +55,10 @@ function ContactPage() {
         </div>
 
         <div className="mt-16 rounded-2xl border border-border bg-surface/60 p-8">
-          <h2 className="font-mono text-xs uppercase tracking-wider text-primary">Response time</h2>
+          <h2 className="font-mono text-xs uppercase tracking-wider text-primary">Based in</h2>
           <p className="mt-3 text-muted-foreground">
-            I usually reply within 24 hours on weekdays. For project enquiries, please include a
-            short brief, timeline, and budget range — it helps me give you a thoughtful response.
+            Tunis, Tunisia 🇹🇳 — open to remote work and internships worldwide. I usually reply
+            within 24 hours. For project enquiries, please include a short brief and timeline.
           </p>
         </div>
       </section>

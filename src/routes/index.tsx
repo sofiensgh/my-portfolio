@@ -6,16 +6,16 @@ import heroImg from "@/assets/hero.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Alex Rivera — Full-Stack Developer & Engineer" },
+      { title: "Sofien Essghaier — Software Engineering Student & Full-Stack Developer" },
       {
         name: "description",
         content:
-          "Portfolio of Alex Rivera, a full-stack developer crafting fast, beautiful, and reliable web products.",
+          "Portfolio of Sofien Essghaier, a software engineering student in Tunis building full-stack web applications with the MERN stack.",
       },
-      { property: "og:title", content: "Alex Rivera — Full-Stack Developer" },
+      { property: "og:title", content: "Sofien Essghaier — Full-Stack Developer" },
       {
         property: "og:description",
-        content: "Crafting fast, beautiful, and reliable web products with modern tools.",
+        content: "Software engineering student building full-stack web apps with React, Node.js & TypeScript.",
       },
     ],
   }),
@@ -24,30 +24,31 @@ export const Route = createFileRoute("/")({
 
 const stack = [
   "TypeScript",
+  "JavaScript",
   "React",
   "Node.js",
-  "PostgreSQL",
-  "Tailwind",
-  "AWS",
-  "Rust",
-  "Docker",
+  "Express.js",
+  "MongoDB",
+  "Tailwind CSS",
+  "Java",
+  "Python",
 ];
 
 const featured = [
   {
-    title: "Lumen Analytics",
-    blurb: "Realtime dashboard for product teams. 12k MAU.",
-    tag: "SaaS",
+    title: "PriceCompare Hub",
+    blurb: "Full-stack price comparison platform scraping 5+ e-commerce sites in real time.",
+    tag: "MERN",
   },
   {
-    title: "Forge CLI",
-    blurb: "Open-source build tool — 3.4k GitHub stars.",
-    tag: "OSS",
+    title: "AI Interview Simulator",
+    blurb: "Voice-driven mock interviews powered by Vapi AI with multiple personalities.",
+    tag: "AI",
   },
   {
-    title: "Atlas Banking",
-    blurb: "Fintech onboarding flow with 99.9% uptime.",
-    tag: "Fintech",
+    title: "Song Recognition App",
+    blurb: "Shazam-like Android app using audio fingerprinting and Firebase.",
+    tag: "Mobile",
   },
 ];
 
@@ -69,7 +70,7 @@ function HomePage() {
         />
         <div className="relative mx-auto max-w-6xl px-6">
           <p className="animate-fade-up font-mono text-xs uppercase tracking-[0.3em] text-primary">
-            // available for new work — Q3 2026
+            // available for internships & freelance — 2026
           </p>
           <h1 className="mt-6 animate-fade-up text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
             Building digital
@@ -80,8 +81,9 @@ function HomePage() {
             className="mt-8 max-w-xl animate-fade-up text-lg text-muted-foreground"
             style={{ animationDelay: "0.15s" }}
           >
-            I&apos;m Alex — a full-stack engineer specialised in performant React apps, durable
-            backends, and design systems that scale. Currently shipping at a Series B startup.
+            I&apos;m Sofien — a third-year Software Engineering student at TekUp University in Tunis.
+            I build full-stack web apps end-to-end, from React interfaces to Node.js backends and
+            MongoDB databases.
           </p>
           <div
             className="mt-10 flex animate-fade-up flex-wrap items-center gap-4"
@@ -151,7 +153,8 @@ function HomePage() {
           <div className="relative">
             <h2 className="text-3xl font-bold md:text-5xl">Have an idea worth building?</h2>
             <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
-              I take on a handful of engagements per quarter. Let&apos;s talk through your roadmap.
+              Open to internships, freelance gigs, and collaboration on cool side projects.
+              Let&apos;s talk.
             </p>
             <Link
               to="/contact"

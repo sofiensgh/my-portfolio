@@ -5,10 +5,10 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Projects — Alex Rivera" },
-      { name: "description", content: "A selection of projects, products, and open-source work by Alex Rivera." },
-      { property: "og:title", content: "Projects — Alex Rivera" },
-      { property: "og:description", content: "Case studies, products, and open-source work." },
+      { title: "Projects — Sofien Essghaier" },
+      { name: "description", content: "A selection of full-stack, AI, and mobile projects built by Sofien Essghaier." },
+      { property: "og:title", content: "Projects — Sofien Essghaier" },
+      { property: "og:description", content: "Full-stack, AI, and mobile projects." },
     ],
   }),
   component: ProjectsPage,
@@ -16,39 +16,39 @@ export const Route = createFileRoute("/projects")({
 
 const projects = [
   {
-    year: "2025",
-    title: "Lumen Analytics",
-    role: "Lead Engineer",
-    desc: "Realtime product analytics dashboard built on ClickHouse + React. Reduced query times by 18×.",
-    tags: ["React", "ClickHouse", "WebSockets"],
+    year: "2024",
+    title: "PriceCompare Hub",
+    role: "Full-Stack Developer",
+    desc: "Full-stack price comparison platform scraping real-time product data from 5+ e-commerce sites with Puppeteer. Node.js + Express backend caches results and reduces API latency by 40%.",
+    tags: ["MERN", "Puppeteer", "Tailwind"],
   },
   {
     year: "2024",
-    title: "Forge CLI",
-    role: "Creator",
-    desc: "An opinionated build tool written in Rust. 3.4k GitHub stars, used by 200+ teams in production.",
-    tags: ["Rust", "OSS", "DX"],
+    title: "AI Interview Simulator",
+    role: "Full-Stack Developer",
+    desc: "AI-powered interview simulator with voice interaction, multiple interviewer personalities (friendly, strict, technical) and real-time feedback. Built with Vite, React, Express & MongoDB. Vapi AI as the voice agent.",
+    tags: ["MERN", "Vapi AI", "Vite"],
   },
   {
     year: "2024",
-    title: "Atlas Banking",
-    role: "Senior Engineer",
-    desc: "Designed the onboarding pipeline for a digital bank serving 80k customers across LATAM.",
-    tags: ["Node.js", "Postgres", "Fintech"],
+    title: "Song Recognition App",
+    role: "Mobile Developer",
+    desc: "Shazam-like Android app that recognizes songs from short audio samples using audio fingerprinting. Real-time mic capture, local matching, and Firebase Firestore for cloud sync.",
+    tags: ["Android", "Java/Kotlin", "Firebase"],
   },
   {
-    year: "2023",
-    title: "Pixel Press",
-    role: "Co-founder",
-    desc: "A headless CMS for indie magazines with collaborative editing. Acquired in early 2024.",
-    tags: ["Next.js", "CRDT", "Stripe"],
+    year: "2022",
+    title: "Mutual Insurance System",
+    role: "Full-Stack Trainee",
+    desc: "Dual-platform (web + desktop) mutual insurance management system built during my internship at Compagnie des Phosphates de Gafsa.",
+    tags: ["PHP", "C#", "MySQL"],
   },
   {
-    year: "2023",
-    title: "Echo Voice",
-    role: "Engineer",
-    desc: "Voice AI app that transcribes & summarises meetings in 14 languages.",
-    tags: ["Whisper", "LLM", "WebRTC"],
+    year: "2021",
+    title: "Employee Analytics Dashboard",
+    role: "Front-End Trainee",
+    desc: "Workforce visualization dashboard built for Compagnie des Phosphates de Gafsa using HTML, CSS, JavaScript and Bootstrap.",
+    tags: ["JavaScript", "Bootstrap", "HTML/CSS"],
   },
 ];
 
@@ -62,7 +62,7 @@ function ProjectsPage() {
           Things I&apos;ve <span className="text-gradient">built.</span>
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          A non-exhaustive list of products, tools, and experiments from the past few years.
+          A selection of full-stack, AI, and mobile projects from my studies and internships.
         </p>
       </section>
 
