@@ -6,6 +6,7 @@ import { PageHero } from "@/components/nier/PageHero";
 import { SectionDivider } from "@/components/nier/SectionDivider";
 import { NierCard } from "@/components/nier/NierCard";
 import { Reveal } from "@/components/nier/Reveal";
+import { SkillSphere } from "@/components/nier/SkillSphere";
 
 export const Route = createFileRoute("/skills")({
   head: () => ({
@@ -73,6 +74,28 @@ const stack = [
   "Vapi AI",
 ];
 
+const sphereSkills = [
+  "React",
+  "TypeScript",
+  "JavaScript",
+  "Node.js",
+  "Express.js",
+  "MongoDB",
+  "Tailwind",
+  "REST API",
+  "Puppeteer",
+  "Vapi AI",
+  "Firebase",
+  "Git",
+  "Java",
+  "Python",
+  "PHP",
+  "C#",
+  "MySQL",
+  "Bootstrap",
+  "HTML/CSS",
+];
+
 const spoken = [
   { name: "Arabic", level: "Native" },
   { name: "French", level: "Professional" },
@@ -92,6 +115,34 @@ function SkillsPage() {
         label="03 // Skills"
         title="SKILLS"
         subtitle="Combat capabilities registry. Equipped modules and operational proficiencies."
+      />
+
+      {/* Sphere */}
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-4xl text-center">
+          <Reveal preset="fade">
+            <span className={label}>// Skill.visualization</span>
+          </Reveal>
+          <Reveal preset="scale" delay={0.1}>
+            <div className="relative mx-auto h-[400px] w-full max-w-xl md:h-[520px]">
+              <SkillSphere skills={sphereSkills} />
+              <div className="pointer-events-none absolute inset-4" aria-hidden="true">
+                <span className="absolute left-0 top-0 h-8 w-8 border-l border-t border-foreground/10" />
+                <span className="absolute right-0 top-0 h-8 w-8 border-r border-t border-foreground/10" />
+                <span className="absolute bottom-0 left-0 h-8 w-8 border-b border-l border-foreground/10" />
+                <span className="absolute bottom-0 right-0 h-8 w-8 border-b border-r border-foreground/10" />
+              </div>
+            </div>
+          </Reveal>
+          <p className="mt-4 font-mono text-[10px] tracking-wider text-foreground/60">
+            Interaction: move your mouse or drag to explore the skill sphere
+          </p>
+        </div>
+      </section>
+
+      <SectionDivider
+        quote="To be alive means to be able to feel. And to feel means to be capable of suffering."
+        author="Pod 153"
       />
 
       {/* Capabilities */}
