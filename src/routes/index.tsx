@@ -1,172 +1,205 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
-import heroImg from "@/assets/hero.jpg";
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { NierLink } from "@/components/nier/NierButton";
+import { ThemeToggle } from "@/components/nier/ThemeToggle";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sofien Essghaier — Software Engineering Student & Full-Stack Developer" },
+      {
+        title: "Sofien Essghaier — Software Engineering Student & Full-Stack Developer",
+      },
       {
         name: "description",
         content:
           "Portfolio of Sofien Essghaier, a software engineering student in Tunis building full-stack web applications with the MERN stack.",
       },
-      { property: "og:title", content: "Sofien Essghaier — Full-Stack Developer" },
+      {
+        property: "og:title",
+        content: "Sofien Essghaier — Full-Stack Developer",
+      },
       {
         property: "og:description",
-        content: "Software engineering student building full-stack web apps with React, Node.js & TypeScript.",
+        content:
+          "Software engineering student building full-stack web apps with React, Node.js & TypeScript.",
       },
     ],
   }),
   component: HomePage,
 });
 
-const stack = [
-  "TypeScript",
-  "JavaScript",
-  "React",
-  "Node.js",
-  "Express.js",
-  "MongoDB",
-  "Tailwind CSS",
-  "Java",
-  "Python",
+/* ─── data ─────────────────────────────────────────────────────────────── */
+
+const FIRST = "SOFIEN";
+const LAST = "ESSGHAIER";
+
+const nameClass = "text-5xl font-medium tracking-[0.14em] text-foreground md:text-7xl lg:text-8xl";
+
+const frameCorners = [
+  "top-8 left-8 border-l border-t",
+  "top-8 right-8 border-r border-t",
+  "bottom-8 left-8 border-l border-b",
+  "bottom-8 right-8 border-r border-b",
 ];
 
-const featured = [
-  {
-    title: "PriceCompare Hub",
-    blurb: "Full-stack price comparison platform scraping 5+ e-commerce sites in real time.",
-    tag: "MERN",
-  },
-  {
-    title: "AI Interview Simulator",
-    blurb: "Voice-driven mock interviews powered by Vapi AI with multiple personalities.",
-    tag: "AI",
-  },
-  {
-    title: "Song Recognition App",
-    blurb: "Shazam-like Android app using audio fingerprinting and Firebase.",
-    tag: "Mobile",
-  },
-];
+/* ─── component ────────────────────────────────────────────────────────── */
+
+function Letters({ word, baseDelay }: { word: string; baseDelay: number }) {
+  return word.split("").map((ch, i) => (
+    <span
+      key={`${word}-${i}`}
+      className="nier-enter animate-nier-letter inline-block"
+      style={{ animationDelay: `${baseDelay + i * 0.04}s` }}
+    >
+      {ch}
+    </span>
+  ));
+}
+
+/** Flickers the name with a short glitch every 5–11 seconds. */
+function useGlitch() {
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    const schedule = () => {
+      timers.push(
+        setTimeout(
+          () => {
+            setOn(true);
+            timers.push(setTimeout(() => setOn(false), 200));
+            schedule();
+          },
+          5000 + Math.random() * 6000,
+        ),
+      );
+    };
+    schedule();
+    return () => timers.forEach(clearTimeout);
+  }, []);
+  return on;
+}
 
 function HomePage() {
+  const glitch = useGlitch();
+
   return (
-    <div className="relative min-h-screen">
-      <SiteHeader />
-
-      {/* Hero */}
-      <section className="relative overflow-hidden pt-40 pb-32">
-        <div className="absolute inset-0 grid-bg opacity-40" aria-hidden />
-        <img
-          src={heroImg}
-          alt=""
-          width={1536}
-          height={1024}
-          aria-hidden
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-30 [mask-image:radial-gradient(ellipse_60%_50%_at_70%_30%,black,transparent_70%)]"
+    <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
+      {/* Diamond frames + horizon */}
+      <div
+        className="pointer-events-none absolute inset-0 flex items-center justify-center"
+        aria-hidden="true"
+      >
+        <div
+          className="nier-enter animate-nier-scale absolute h-[72vmin] w-[72vmin] rotate-45 border border-foreground/10"
+          style={{ animationDelay: "0.2s" }}
         />
-        <div className="relative mx-auto max-w-6xl px-6">
-          <p className="animate-fade-up font-mono text-xs uppercase tracking-[0.3em] text-primary">
-            // available for internships & freelance — 2026
-          </p>
-          <h1 className="mt-6 animate-fade-up text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
-            Building digital
-            <br />
-            products that <span className="text-gradient">just work.</span>
+        <div
+          className="nier-enter animate-nier-scale absolute h-[48vmin] w-[48vmin] rotate-45 border border-foreground/15"
+          style={{ animationDelay: "0.45s" }}
+        />
+        <div
+          className="nier-enter animate-nier-line absolute left-0 right-0 h-px bg-foreground/10"
+          style={{ animationDelay: "0.6s", animationDuration: "2s" }}
+        />
+      </div>
+
+      {/* Screen corners */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        {frameCorners.map((pos, i) => (
+          <span
+            key={pos}
+            className={`nier-enter animate-nier-fade absolute h-16 w-16 border-foreground/15 ${pos}`}
+            style={{ animationDelay: `${0.5 + i * 0.15}s` }}
+          />
+        ))}
+      </div>
+
+      {/* Theme switch */}
+      <div
+        className="nier-enter animate-nier-blur absolute left-1/2 top-6 z-20 -translate-x-1/2"
+        style={{ animationDelay: "0.8s" }}
+      >
+        <ThemeToggle />
+      </div>
+
+      {/* Identity */}
+      <div className="relative z-10 flex w-full max-w-3xl flex-col items-center px-6 text-center">
+        <div
+          className="nier-enter animate-nier-fade mb-8 flex w-full items-center gap-5"
+          style={{ animationDelay: "0.5s" }}
+        >
+          <span className="h-px flex-1 bg-foreground/20" />
+          <span className="font-mono text-[11px] uppercase tracking-[0.4em] text-foreground/70">
+            Full-Stack Developer
+          </span>
+          <span className="h-px flex-1 bg-foreground/20" />
+        </div>
+
+        <div className="relative mb-6">
+          <h1 aria-label={`${FIRST} ${LAST}`} className={nameClass}>
+            <span aria-hidden="true" className="block leading-[1.05]">
+              <Letters word={FIRST} baseDelay={0.9} />
+            </span>
+            <span aria-hidden="true" className="block leading-[1.05]">
+              <Letters word={LAST} baseDelay={1.15} />
+            </span>
           </h1>
-          <p
-            className="mt-8 max-w-xl animate-fade-up text-lg text-muted-foreground"
-            style={{ animationDelay: "0.15s" }}
-          >
-            I&apos;m Sofien — a third-year Software Engineering student at TekUp University in Tunis.
-            I build full-stack web apps end-to-end, from React interfaces to Node.js backends and
-            MongoDB databases.
-          </p>
-          <div
-            className="mt-10 flex animate-fade-up flex-wrap items-center gap-4"
-            style={{ animationDelay: "0.3s" }}
-          >
-            <Link
-              to="/projects"
-              className="inline-flex h-12 items-center justify-center rounded-lg bg-primary px-7 font-semibold text-primary-foreground glow transition-all hover:brightness-110"
-            >
-              View my work →
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex h-12 items-center justify-center rounded-lg glass px-7 font-medium text-foreground transition-all hover:border-primary/50 hover:text-primary"
-            >
-              Get in touch
-            </Link>
-          </div>
+          {glitch && (
+            <>
+              <div
+                className={`animate-glitch-1 pointer-events-none absolute inset-0 ${nameClass} text-foreground/70`}
+                aria-hidden="true"
+              >
+                <div className="leading-[1.05]">{FIRST}</div>
+                <div className="leading-[1.05]">{LAST}</div>
+              </div>
+              <div
+                className={`animate-glitch-2 pointer-events-none absolute inset-0 ${nameClass} text-foreground/60`}
+                aria-hidden="true"
+              >
+                <div className="leading-[1.05]">{FIRST}</div>
+                <div className="leading-[1.05]">{LAST}</div>
+              </div>
+            </>
+          )}
         </div>
-      </section>
 
-      {/* Stack ticker */}
-      <section className="border-y border-border/50 bg-surface/40 py-6">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-6 font-mono text-sm text-muted-foreground">
-          <span className="text-primary">stack →</span>
-          {stack.map((s) => (
-            <span key={s}>{s}</span>
-          ))}
-        </div>
-      </section>
+        <div
+          className="nier-enter animate-nier-line mb-8 h-px w-48 bg-foreground/25"
+          style={{ animationDelay: "1.5s" }}
+        />
 
-      {/* Featured projects */}
-      <section className="mx-auto max-w-6xl px-6 py-24">
-        <div className="mb-12 flex items-end justify-between">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
-              /// selected work
-            </p>
-            <h2 className="mt-3 text-4xl font-bold md:text-5xl">Recent projects</h2>
-          </div>
-          <Link to="/projects" className="hidden text-sm text-muted-foreground hover:text-primary md:inline">
-            See all →
-          </Link>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {featured.map((p, i) => (
-            <article
-              key={p.title}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[var(--shadow-glow)]"
-            >
-              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-primary/20 opacity-0 blur-3xl transition-opacity group-hover:opacity-100" />
-              <span className="font-mono text-xs text-primary">0{i + 1} · {p.tag}</span>
-              <h3 className="mt-4 text-xl font-semibold">{p.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{p.blurb}</p>
-              <span className="mt-6 inline-block text-sm text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                Read case →
-              </span>
-            </article>
-          ))}
-        </div>
-      </section>
+        <p
+          className="nier-enter animate-nier-fade mb-12 max-w-sm font-sans text-sm italic leading-relaxed text-foreground/70"
+          style={{ animationDelay: "1.8s" }}
+        >
+          "Everything that lives is designed to end."
+        </p>
 
-      {/* CTA */}
-      <section className="mx-auto max-w-6xl px-6">
-        <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-12 text-center md:p-20">
-          <div className="absolute inset-0 opacity-50" style={{ background: "var(--gradient-radial)" }} />
-          <div className="relative">
-            <h2 className="text-3xl font-bold md:text-5xl">Have an idea worth building?</h2>
-            <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
-              Open to internships, freelance gigs, and collaboration on cool side projects.
-              Let&apos;s talk.
-            </p>
-            <Link
-              to="/contact"
-              className="mt-8 inline-flex h-12 items-center justify-center rounded-lg bg-primary px-8 font-semibold text-primary-foreground glow transition-all hover:brightness-110"
-            >
-              Start a conversation
-            </Link>
-          </div>
+        <div className="nier-enter animate-nier-letter" style={{ animationDelay: "2.1s" }}>
+          <NierLink to="/about" variant="outline">
+            Enter System
+          </NierLink>
         </div>
-      </section>
+      </div>
 
-      <SiteFooter />
-    </div>
+      {/* Status line */}
+      <div
+        className="nier-enter animate-nier-fade absolute bottom-8 left-0 right-0 flex items-center justify-center"
+        style={{ animationDelay: "2.4s" }}
+      >
+        <div className="flex items-center gap-4 font-mono text-[10px] tracking-[0.2em] text-foreground/60">
+          <span>SYS.VER 1.0.0</span>
+          <span className="animate-nier-pulse-line h-px w-4 bg-foreground/20" />
+          <span>UNIT: SE-194</span>
+          <span
+            className="animate-nier-pulse-line h-px w-4 bg-foreground/20"
+            style={{ animationDelay: "0.5s" }}
+          />
+          <span>STATUS: ONLINE</span>
+        </div>
+      </div>
+    </section>
   );
 }
