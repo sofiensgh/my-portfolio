@@ -10,6 +10,7 @@ import { PageTransition } from "@/components/effects/PageTransition";
 import { CustomCursor } from "@/components/effects/CustomCursor";
 import { ScrollProgress } from "@/components/effects/ScrollProgress";
 import { themeInitScript } from "@/hooks/useTheme";
+import { useGlobalSoundEffects } from "@/hooks/useSound";
 
 function NotFoundComponent() {
   return (
@@ -96,6 +97,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const [booted, setBooted] = useState(false);
+  useGlobalSoundEffects();
 
   return (
     <>

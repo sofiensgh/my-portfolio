@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/nier/ThemeToggle";
+import { SoundToggle } from "@/components/nier/SoundToggle";
 
 export const navItems = [
   { id: "01", to: "/about", label: "About" },
@@ -71,13 +72,17 @@ export function SiteHeader() {
               <span className="absolute -bottom-1.5 left-0 right-0 h-px origin-left scale-x-0 bg-foreground/50 transition-transform duration-300 group-hover:scale-x-100 group-data-[status=active]:scale-x-100" />
             </Link>
           ))}
-          <ThemeToggle className="ml-4" />
+          <div className="ml-4 flex items-center gap-2">
+            <SoundToggle />
+            <ThemeToggle />
+          </div>
         </div>
       </nav>
 
       {/* Mobile bar */}
       <div className="fixed left-4 top-4 z-50 p-3 md:hidden">{logo}</div>
       <div className="fixed right-4 top-4 z-50 flex items-center gap-2 md:hidden">
+        <SoundToggle />
         <ThemeToggle />
         <button
           type="button"

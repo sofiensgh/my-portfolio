@@ -975,3 +975,33 @@ html.booting .nier-enter {
     animation: none !important;
   }
 }
+
+/* ── Sound toggle equalizer ─────────────────────────────────────────── */
+@keyframes sound-bar {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.animate-sound-bar {
+  animation: sound-bar 0.9s ease-in-out infinite;
+}
+
+/* ── Boot failsafe ──────────────────────────────────────────────────── */
+/* The overlay is server-rendered; if JavaScript never takes over, fade it out
+   on its own so the page is never stuck behind it. */
+.boot-overlay {
+  animation: boot-failsafe 0.6s ease 9s forwards;
+}
+
+@keyframes boot-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}

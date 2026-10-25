@@ -6,9 +6,10 @@ const STORAGE_KEY = "theme";
 
 /**
  * Runs in <head> before first paint: restores the saved theme and marks the
- * document as booting so intro animations wait for the boot sequence.
+ * document as booting so intro animations wait for the boot sequence. The
+ * class is force-cleared after 9s in case the app's JavaScript never runs.
  */
-export const themeInitScript = `(function(){var r=document.documentElement;r.classList.add("booting");try{if(localStorage.getItem("${STORAGE_KEY}")==="light")r.classList.add("light");}catch(e){}})();`;
+export const themeInitScript = `(function(){var r=document.documentElement;r.classList.add("booting");setTimeout(function(){r.classList.remove("booting")},9000);try{if(localStorage.getItem("${STORAGE_KEY}")==="light")r.classList.add("light");}catch(e){}})();`;
 
 const readTheme = (): Theme =>
   document.documentElement.classList.contains("light") ? "light" : "dark";

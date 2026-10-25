@@ -44,25 +44,41 @@ export function BootSequence({ onDone }: { onDone: () => void }) {
     };
   }, []);
 
+  // Keep the latest callback without making it an effect dependency: a parent
+  // re-render must never cancel the finish timers below.
+  const onDoneRef = useRef(onDone);
+  onDoneRef.current = onDone;
+  const finishTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
+
   useEffect(() => {
-    if (progress >= 100 && shown >= BOOT_LINES.length && !doneRef.current) {
-      doneRef.current = true;
-      const t1 = setTimeout(() => setFading(true), 450);
-      const t2 = setTimeout(() => {
+    if (progress < 100 || shown < BOOT_LINES.length || doneRef.current) return;
+    doneRef.current = true;
+    finishTimers.current.push(
+      setTimeout(() => setFading(true), 450),
+      setTimeout(() => {
         // Release the intro animations held by html.booting.
         document.documentElement.classList.remove("booting");
-        onDone();
-      }, 1000);
-      return () => {
-        clearTimeout(t1);
-        clearTimeout(t2);
-      };
-    }
-  }, [progress, shown, onDone]);
+        onDoneRef.current();
+      }, 1000),
+    );
+  }, [progress, shown]);
+
+  useEffect(() => {
+    // Safety net: whatever happens, never hold the visitor on this screen.
+    const failsafe = setTimeout(() => {
+      setShown(BOOT_LINES.length);
+      setProgress(100);
+    }, 6000);
+    const timers = finishTimers.current;
+    return () => {
+      clearTimeout(failsafe);
+      timers.forEach(clearTimeout);
+    };
+  }, []);
 
   return (
     <div
-      className={`fixed inset-0 z-[9998] flex items-center justify-center bg-background transition-opacity duration-500 ${
+      className={`boot-overlay fixed inset-0 z-[9998] flex items-center justify-center bg-background transition-opacity duration-500 ${
         fading ? "opacity-0" : "opacity-100"
       }`}
     >

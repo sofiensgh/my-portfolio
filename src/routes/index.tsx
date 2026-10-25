@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { NierLink } from "@/components/nier/NierButton";
 import { ThemeToggle } from "@/components/nier/ThemeToggle";
+import { SoundToggle } from "@/components/nier/SoundToggle";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -115,11 +116,12 @@ function HomePage() {
         ))}
       </div>
 
-      {/* Theme switch */}
+      {/* Sound + theme switches */}
       <div
-        className="nier-enter animate-nier-blur absolute left-1/2 top-6 z-20 -translate-x-1/2"
+        className="nier-enter animate-nier-blur absolute left-1/2 top-6 z-20 flex -translate-x-1/2 items-center gap-2"
         style={{ animationDelay: "0.8s" }}
       >
+        <SoundToggle />
         <ThemeToggle />
       </div>
 
